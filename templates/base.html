@@ -8,6 +8,8 @@
 <body>
   <header>
     <a href="/">Home</a>
+    <a href="/plans/">一覧</a>
+    <a href="/plans/new/">新規作成</a>
     {% if request.user.is_authenticated %}
       <span>ようこそ、{{ request.user.username }} さん</span>
       <a href="/logout">ログアウト</a>
@@ -15,6 +17,7 @@
       <a href="/login">ログイン</a>
       <a href="/register">新規登録</a>
     {% endif %}
+    
   </header>
 
   {% if messages %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}プラン詳細{% endblock %}
+{% block content %}
+<h1>{{ plan.title }}</h1>
+<ul>
+  <li><strong>都道府県：</strong>{{ plan.pref }}</li>
+  <li><strong>エリア：</strong>{{ plan.sub_area }}</li>
+  <li><strong>投稿者：</strong>{{ plan.author.username }}</li>
+  <li><strong>公開設定：</strong>{{ plan.is_public|yesno:"公開,非公開" }}</li>
+  <li><strong>作成日時：</strong>{{ plan.created_at }}</li>
+</ul>
+<p style="margin-top:16px;">
+  <a href="/plans/new/">＋ 新規プラン作成</a> /
+  <a href="/">ホームへ</a>
+</p>
+{% endblock %}

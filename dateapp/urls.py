@@ -30,6 +30,9 @@ urlpatterns = [
     
     path("plans/new/", pv.plan_new, name="plan_new"), # 新規作成
     path("plans/<int:pk>/", pv.plan_detail, name="plan_detail"), # 詳細表示
+
+    # ...既存
+    path("plans/", pv.plan_list, name="plan_list"),  # 一覧＆検索
 ]
     
 
