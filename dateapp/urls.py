@@ -22,7 +22,7 @@ from plans import views as pv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", pv.home, name="home"),
+    path("", pv.plan_list, name="home"),
 
     # 認証
     path(

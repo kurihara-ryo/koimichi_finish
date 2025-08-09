@@ -1,18 +1,20 @@
 {% extends "base.html" %}
-{% block title %}新規登録{% endblock %}
+{% block title %}Register{% endblock %}
 {% block content %}
-<h1>新規登録</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
-  {% for field in form %}
-    <label>{{ field.label }} {{ field }}
-      {% for error in field.errors %}
-        <div style="color:red">{{ error }}</div>
-      {% endfor %}
-    </label>
-  {% endfor %}
-  <button type="submit">登録する</button>
-</form>
+<div class="register-vertical">
+  <h1>Register</h1>
+  <form method="post" class="register-form-vertical">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <label>{{ field.label }} {{ field }}
+        {% for error in field.errors %}
+          <div style="color:red">{{ error }}</div>
+        {% endfor %}
+      </label>
+    {% endfor %}
+  <button type="submit">Register</button>
+  </form>
+</div>
 {% endblock %}
 

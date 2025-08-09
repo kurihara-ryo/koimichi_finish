@@ -1,48 +1,48 @@
 {% extends "base.html" %}
-{% block title %}プラン一覧{% endblock %}
+{% block title %}Plan List{% endblock %}
 {% block content %}
-<h1>プラン一覧</h1>
-
-<form method="get" style="margin: 12px 0;">
-  <label>都道府県：
-    <select name="pref">
-      <option value="">（すべて）</option>
-      {% for val, label in PREF_CHOICES %}
-        <option value="{{ val }}" {% if pref == val %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-    </select>
-  </label>
-
-  <label style="margin-left:8px;">エリア：
-    <select name="sub_area">
-      <option value="">（すべて）</option>
-      {% for val, label in SUBAREA_CHOICES %}
-        <option value="{{ val }}" {% if sub_area == val %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-    </select>
-  </label>
-
-  <button type="submit" style="margin-left:8px;">検索</button>
-  {% if pref or sub_area %}
-    <a href="/plans/" style="margin-left:8px;">クリア</a>
-  {% endif %}
-</form>
-#
-{% if plans %}
-  <ul>
-    {% for p in plans %}
-      <li style="margin:10px 0;">
-        <a href="/plans/{{ p.id }}/"><strong>{{ p.title }}</strong></a><br>
-        <small>{{ p.pref }} / {{ p.sub_area }} ・ {{ p.created_at }}</small>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>該当するプランがありません。</p>
-{% endif %}
-
-<p style="margin-top:16px;">
-  <a href="/plans/new/">＋ 新規プラン作成</a>
-</p>
-
+<div class="plan-list-vertical">
+  <h1>Plan List</h1>
+  <form method="get" class="plan-search-form">
+  <label>Prefecture:
+      <select name="pref">
+        <option value="">（すべて）</option>
+        {% for val, label in PREF_CHOICES %}
+          <option value="{{ val }}" {% if pref == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  <label style="margin-top:8px;">Area:
+      <select name="sub_area">
+        <option value="">（すべて）</option>
+        {% for val, label in SUBAREA_CHOICES %}
+          <option value="{{ val }}" {% if sub_area == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <div style="margin-top:8px;">
+  <button type="submit">Search</button>
+      {% if pref or sub_area %}
+  <a href="/plans/" style="margin-left:8px;">Clear</a>
+      {% endif %}
+    </div>
+  </form>
+  <div style="margin: 16px 0; width: 100%;">
+    {% if plans %}
+      <ul class="plan-list-grid">
+        {% for p in plans %}
+          <li>
+            <a href="/plans/{{ p.id }}/"><strong>{{ p.title }}</strong></a><br>
+            <small>{{ p.pref }} / {{ p.sub_area }} ・ {{ p.created_at }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+  <p>No plans found.</p>
+    {% endif %}
+  </div>
+  <div style="margin-top:16px;">
+  <a href="/plans/new/">+ Create New Plan</a>
+  </div>
+</div>
 {% endblock %}

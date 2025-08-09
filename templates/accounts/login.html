@@ -1,23 +1,25 @@
 {% extends "base.html" %}
-{% block title %}ログイン{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
-<h1>ログイン</h1>
-{% if messages %}
-  {% for message in messages %}
-    <div class="logout-message">{{ message }}</div>
-  {% endfor %}
-{% endif %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
-  {% for field in form %}
-    <label>{{ field.label }} {{ field }}
-      {% for error in field.errors %}
-        <div style="color:red">{{ error }}</div>
-      {% endfor %}
-    </label>
-  {% endfor %}
-  <button type="submit">ログイン</button>
-</form>
+<div class="login-vertical">
+  <h1>Login</h1>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="logout-message">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  <form method="post" class="login-form-vertical">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <label>{{ field.label }} {{ field }}
+        {% for error in field.errors %}
+          <div style="color:red">{{ error }}</div>
+        {% endfor %}
+      </label>
+    {% endfor %}
+  <button type="submit">Login</button>
+  </form>
+</div>
 {% endblock %}
 
