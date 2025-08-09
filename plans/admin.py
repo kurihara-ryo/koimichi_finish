@@ -6,9 +6,11 @@ class SpotInline(admin.TabularInline):
     model = Spot
     extra = 0
 
+
 class LegInline(admin.TabularInline):
     model = Leg
     extra = 0
+
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
@@ -17,11 +19,13 @@ class PlanAdmin(admin.ModelAdmin):
     search_fields = ("title", "sub_area", "author__username")
     inlines = [SpotInline, LegInline]
 
+
 @admin.register(Spot)
 class SpotAdmin(admin.ModelAdmin):
     list_display = ("id", "plan", "order", "name", "stay_minutes")
     list_filter = ("plan",)
     search_fields = ("name",)
+
 
 @admin.register(Leg)
 class LegAdmin(admin.ModelAdmin):
