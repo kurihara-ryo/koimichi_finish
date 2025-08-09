@@ -5,6 +5,7 @@
 <ul>
   <li><strong>都道府県：</strong>{{ plan.pref }}</li>
   <li><strong>エリア：</strong>{{ plan.sub_area }}</li>
+  <li><strong>交通手段：</strong>{{ plan.get_default_mode_display }}</li>
   <li><strong>投稿者：</strong>{{ plan.author.username }}</li>
   <li><strong>公開設定：</strong>{{ plan.is_public|yesno:"公開,非公開" }}</li>
   <li><strong>作成日時：</strong>{{ plan.created_at }}</li>
