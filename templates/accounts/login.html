@@ -2,6 +2,11 @@
 {% block title %}ログイン{% endblock %}
 {% block content %}
 <h1>ログイン</h1>
+{% if messages %}
+  {% for message in messages %}
+    <div class="logout-message">{{ message }}</div>
+  {% endfor %}
+{% endif %}
 <form method="post">
   {% csrf_token %}
   {{ form.non_field_errors }}

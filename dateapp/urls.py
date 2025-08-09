@@ -33,7 +33,7 @@ urlpatterns = [
         ),
         name="login"
     ),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("logout/", pv.logout_view, name="logout"),
     path("register/", pv.register, name="register"),
     
     path("plans/new/", pv.plan_new, name="plan_new"),  # 新規作成

@@ -1,3 +1,13 @@
+/* ログアウトメッセージ用 */
+.logout-message {
+    color: #ffb347;
+    background: rgba(0,0,0,0.15);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0;
+}
 /* 全体の背景と文字色 */
 body {
     margin: 0;
