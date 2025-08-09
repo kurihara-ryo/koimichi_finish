@@ -37,6 +37,12 @@ class Plan(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     is_public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    default_mode = models.CharField(
+        max_length=10,
+        choices=TRAVEL_MODES,
+        default="walk",
+        verbose_name="デフォルト移動手段",
+    )
 
     class Meta:
         ordering = ["-created_at"]

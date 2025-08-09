@@ -58,6 +58,7 @@ def plan_list(request):
         "sub_area": sub_area,
         "PREF_CHOICES": PREF_CHOICES,
         "SUBAREA_CHOICES": SUBAREA_CHOICES,
+        
     })
     
     

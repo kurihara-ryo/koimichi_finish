@@ -116,13 +116,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'   # ログイン後はホームへ
+LOGOUT_REDIRECT_URL = 'login' # ログアウト後はログインへ
+LOGIN_URL = 'login'           # 未ログイン時に飛ばすログインURL
+
+# ハッカソン中はパスワード制約を緩める場合はこれでOK（上の定義は削除）
 AUTH_PASSWORD_VALIDATORS = []
 

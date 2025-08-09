@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="ja">
 <head>
+  {% load static %}
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% block title %}デートプランSNS{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
   <header>
@@ -25,6 +27,9 @@
     {% endfor %}
   {% endif %}
 
-  {% block content %}{% endblock %}
+  <!-- ここを追加：CSSの .main-container を効かせる共通ラッパ -->
+  <main class="main-container">
+    {% block content %}{% endblock %}
+  </main>
 </body>
 </html>
