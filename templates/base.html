@@ -7,17 +7,16 @@
 </head>
 <body>
   <header>
-    <a href="/">Home</a>
-    <a href="/plans/">一覧</a>
-    <a href="/plans/new/">新規作成</a>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'plan_list' %}">一覧</a>
+    <a href="{% url 'plan_new' %}">新規作成</a>
     {% if request.user.is_authenticated %}
       <span>ようこそ、{{ request.user.username }} さん</span>
-      <a href="/logout">ログアウト</a>
+      <a href="{% url 'logout' %}">ログアウト</a>
     {% else %}
-      <a href="/login">ログイン</a>
-      <a href="/register">新規登録</a>
+      <a href="{% url 'login' %}">ログイン</a>
+      <a href="{% url 'register' %}">新規登録</a>
     {% endif %}
-    
   </header>
 
   {% if messages %}
@@ -29,4 +28,3 @@
   {% block content %}{% endblock %}
 </body>
 </html>
-

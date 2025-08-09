@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+
 from .forms import PlanBasicForm
-from .models import Plan
 from .models import Plan, PREF_CHOICES, SUBAREA_CHOICES
+
 def home(request):
     # ログイン状態のテスト表示だけ
     return render(request, "home.html")
@@ -51,12 +52,12 @@ def plan_list(request):
     if sub_area:
         qs = qs.filter(sub_area=sub_area)
 
-    ctx = {
+    return render(request, "plans/plan_list.html", {
         "plans": qs,
         "pref": pref,
         "sub_area": sub_area,
         "PREF_CHOICES": PREF_CHOICES,
         "SUBAREA_CHOICES": SUBAREA_CHOICES,
-    }
-    return render(request, "plans/plan_list.html", ctx)
+    })
+    
     
