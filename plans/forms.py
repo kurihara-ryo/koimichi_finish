@@ -15,14 +15,27 @@ class PlanBasicForm(forms.ModelForm):
             "default_mode": forms.Select(choices=TRAVEL_MODES),
         }
 
-# Spot（店名のみ）用フォーム
+# Spot（店名＋滞在時間）用フォーム
 class SpotNameForm(forms.ModelForm):
+    STAY_MINUTES_CHOICES = [(i, f"{i}分") for i in range(15, 241, 15)]
+    stay_minutes = forms.ChoiceField(
+        choices=STAY_MINUTES_CHOICES,
+        label="滞在時間（分）",
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    name = forms.CharField(
+        required=False,
+        label="Shop Name",
+        widget=forms.TextInput(attrs={"placeholder": "Shop name", "class": "form-control"})
+    )
     class Meta:
         model = Spot
-        fields = ["name"]
-        labels = {"name": "Shop Name"}
+        fields = ["name", "stay_minutes"]
+        labels = {
+            "name": "Shop Name",
+        }
         widgets = {
-            "name": forms.TextInput(attrs={"placeholder": "Shop name", "class": "form-control"})
+            "name": forms.TextInput(attrs={"placeholder": "Shop name", "class": "form-control"}),
         }
 
 # Spotフォームセット（5個固定、1以上必須、Add/Deleteなし）

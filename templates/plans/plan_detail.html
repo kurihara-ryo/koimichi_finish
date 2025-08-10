@@ -15,7 +15,10 @@
   <h3 style="margin-top:24px;">Shops Visited</h3>
   <ol>
     {% for spot in plan.spots.all %}
-      <li>{{ spot.name }}</li>
+      <li>
+        {{ spot.name }}
+        <span style="color:#ffffff; font-size:0.95em;">（{{ spot.stay_minutes }}分）</span>
+      </li>
     {% empty %}
       <li>No shops registered.</li>
     {% endfor %}

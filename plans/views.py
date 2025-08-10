@@ -34,10 +34,13 @@ def plan_new(request):
             plan.is_public = True  # 常に公開
             plan.save()
             spots = formset.save(commit=False)
-            for i, spot in enumerate(spots):
-                spot.plan = plan
-                spot.order = i + 1
-                spot.save()
+            order = 1
+            for spot in spots:
+                if spot.name:  # 店名が空でなければ保存
+                    spot.plan = plan
+                    spot.order = order
+                    spot.save()
+                    order += 1
             messages.success(request, "プランを作成しました。")
             return redirect("plan_detail", pk=plan.pk)
     else:
@@ -71,6 +74,8 @@ def plan_list(request):
     })
 
 def logout_view(request):
+    # セッションを完全クリアしてからlogout
+    request.session.flush()
     logout(request)
     messages.success(request, "You have been logged out.")
     return redirect('login')
