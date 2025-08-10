@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}立ち寄り先編集{% endblock %}
+{% block content %}
+<h1>{{ plan.title }} の立ち寄り先（最大11件）</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ formset.management_form }}
+
+  <div class="stops">
+    {% for form in formset %}
+      <div class="stop-row">
+        <div>順番</div>
+        {{ form.order.errors }} {{ form.order }}
+
+        <div>店名</div>
+        {{ form.name.errors }} {{ form.name }}
+
+        <div>滞在(分)</div>
+        {{ form.approx_minutes.errors }} {{ form.approx_minutes }}
+
+        {% for field in form.hidden_fields %}{{ field }}{% endfor %}
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
+
+  <button type="submit">保存</button>
+</form>
+{% endblock %}
