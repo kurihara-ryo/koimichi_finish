@@ -6,3 +6,9 @@ db.sqlite3
 .DS_Store
 staticfiles/
 media/
+
+# local DB & cache
+*.sqlite3
+db.sqlite3
+__pycache__/
+*.pyc
