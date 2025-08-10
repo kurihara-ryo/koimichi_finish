@@ -12,7 +12,9 @@
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
-      <label>{{ field.label }} {{ field }}
+      <label>
+        {% if field.name == 'username' %}Username{% elif field.name == 'password' %}Password{% else %}{{ field.label }}{% endif %}
+        {{ field }}
         {% for error in field.errors %}
           <div style="color:red">{{ error }}</div>
         {% endfor %}

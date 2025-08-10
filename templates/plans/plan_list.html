@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Plan List{% endblock %}
 {% block content %}
+<style>
+.plan-list-grid li {
+  background: linear-gradient(90deg, #ffa8e6 0%, #a8d8ff 100%);
+  color: #222;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.plan-list-grid li a.plan-card-link {
+  display: block;
+  padding: 18px 16px;
+  text-decoration: none;
+  color: inherit;
+}
+.plan-list-grid li:hover {
+  background: linear-gradient(90deg, #7eb0ff 0%, #ffb8b8 100%);
+  color: #fff;
+  transform: scale(1.02);
+  z-index: 1;
+}
+.plan-list-grid li:hover a.plan-card-link {
+  color: #fff;
+}
+</style>
 <div class="plan-list-vertical">
   <h1>Plan List</h1>
   <form method="get" class="plan-search-form">
   <label>Prefecture:
       <select name="pref">
-        <option value="">（すべて）</option>
+  <option value="">all</option>
         {% for val, label in PREF_CHOICES %}
           <option value="{{ val }}" {% if pref == val %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
@@ -14,7 +39,7 @@
     </label>
   <label style="margin-top:8px;">Area:
       <select name="sub_area">
-        <option value="">（すべて）</option>
+  <option value="">all</option>
         {% for val, label in SUBAREA_CHOICES %}
           <option value="{{ val }}" {% if sub_area == val %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
@@ -32,8 +57,11 @@
       <ul class="plan-list-grid">
         {% for p in plans %}
           <li>
-            <a href="/plans/{{ p.id }}/"><strong>{{ p.title }}</strong></a><br>
-            <small>{{ p.pref }} / {{ p.sub_area }} ・ {{ p.created_at }}</small>
+            <a href="/plans/{{ p.id }}/" class="plan-card-link">
+              <strong>{{ p.title }}</strong><br>
+              <small>{{ p.pref }} / {{ p.sub_area }}</small><br>
+              <small>{{ p.created_at }}</small>
+            </a>
           </li>
         {% endfor %}
       </ul>

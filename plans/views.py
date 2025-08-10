@@ -4,8 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
-from .forms import PlanBasicForm
-from .models import Plan, PREF_CHOICES, SUBAREA_CHOICES
+from .forms import PlanBasicForm, SpotFormSet
+from .models import Plan, Spot, PREF_CHOICES, SUBAREA_CHOICES
 
 def home(request):
     # ログイン状態のテスト表示だけ
@@ -24,18 +24,26 @@ def register(request):
 
 @login_required
 def plan_new(request):
-    """プラン新規作成"""
+    """プラン新規作成（店2軒限定）"""
     if request.method == "POST":
         form = PlanBasicForm(request.POST)
-        if form.is_valid():
+        formset = SpotFormSet(request.POST, queryset=Spot.objects.none())
+        if form.is_valid() and formset.is_valid():
             plan = form.save(commit=False)
             plan.author = request.user
+            plan.is_public = True  # 常に公開
             plan.save()
+            spots = formset.save(commit=False)
+            for i, spot in enumerate(spots):
+                spot.plan = plan
+                spot.order = i + 1
+                spot.save()
             messages.success(request, "プランを作成しました。")
             return redirect("plan_detail", pk=plan.pk)
     else:
         form = PlanBasicForm()
-    return render(request, "plans/plan_form.html", {"form": form})
+        formset = SpotFormSet(queryset=Spot.objects.none())
+    return render(request, "plans/plan_form.html", {"form": form, "formset": formset})
 
 def plan_detail(request, pk):
     """プラン詳細"""
@@ -64,6 +72,6 @@ def plan_list(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, "ログアウトしました。")
+    messages.success(request, "You have been logged out.")
     return redirect('login')
 

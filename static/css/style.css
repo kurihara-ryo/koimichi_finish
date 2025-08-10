@@ -1,3 +1,85 @@
+/* 新規プラン作成フォームのプルダウンをおしゃれに */
+.plan-form-vertical-form select {
+    background: linear-gradient(90deg, #ffe5e5 0%, #fff5f5 100%);
+    border: 1.5px solid #ffb3b3;
+    border-radius: 7px;
+    color: #a33;
+    padding: 10px 14px;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    outline: none;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: box-shadow 0.18s cubic-bezier(0.4,0,0.2,1), border 0.18s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.plan-form-vertical-form select:focus {
+    border: 1.5px solid #ff5f6d;
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
+    background: linear-gradient(90deg, #fff0f0 0%, #ffeaea 100%);
+}
+/* 新規プラン作成フォームの項目とボタンを中央揃え */
+.plan-form-vertical-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 220px;
+    max-width: 400px;
+    width: 100%;
+}
+.plan-form-vertical-form label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.plan-form-vertical-form button[type="submit"] {
+    align-self: center;
+}
+/* 新規プラン作成フォームを縦並び・中央寄せ */
+.plan-form-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin-top: 32px;
+}
+.plan-form-vertical-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 220px;
+    max-width: 400px;
+    width: 100%;
+}
+/* プラン詳細ページを縦並び・中央寄せ */
+.plan-detail-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin-top: 32px;
+}
+.plan-detail-vertical ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 18px;
+}
+.plan-detail-vertical li {
+    padding: 0;
+    margin: 0;
+}
 /* 新規登録画面の縦並び・中央寄せ */
 .register-vertical {
     display: flex;
@@ -13,6 +95,51 @@
     gap: 12px;
     min-width: 220px;
     max-width: 350px;
+}
+
+/* register, login画面のテキスト入力欄をおしゃれに */
+.register-form-vertical input[type="text"],
+.register-form-vertical input[type="password"],
+.login-form-vertical input[type="text"],
+.login-form-vertical input[type="password"] {
+    background: linear-gradient(90deg, #fffafa 0%, #ffffff 100%);
+    border: 1.5px solid #ffd6d6;
+    border-radius: 7px;
+    color: #a33;
+    padding: 10px 14px;
+    font-size: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    outline: none;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: box-shadow 0.18s cubic-bezier(0.4,0,0.2,1), border 0.18s;
+}
+.register-form-vertical input[type="text"]:focus,
+.register-form-vertical input[type="password"]:focus,
+.login-form-vertical input[type="text"]:focus,
+.login-form-vertical input[type="password"]:focus {
+    border: 1.5px solid #ffb3b3;
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
+    background: linear-gradient(90deg, #fff6f6 0%, #fff 100%);
+}
+
+/* Registerボタンを薄い赤系グラデーションに */
+.register-form-vertical button[type="submit"] {
+    background: linear-gradient(90deg, #ffb3b3 0%, #ffd6d6 100%);
+    color: #a33;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.register-form-vertical button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ffcccc 0%, #ffeaea 100%);
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
+    opacity: 0.95;
 }
 /* ログイン画面の縦並び・中央寄せ */
 .login-vertical {
@@ -30,6 +157,25 @@
     min-width: 220px;
     max-width: 350px;
 }
+
+/* Loginボタンもregisterと同じ薄い赤系グラデーションに */
+.login-form-vertical button[type="submit"] {
+    background: linear-gradient(90deg, #ffb3b3 0%, #ffd6d6 100%);
+    color: #a33;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.login-form-vertical button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ffcccc 0%, #ffeaea 100%);
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
+    opacity: 0.95;
+}
 /* プラン一覧を横3列のグリッド表示に */
 .plan-list-grid {
     display: grid;
@@ -42,6 +188,10 @@
     margin: 0 auto;
 }
 .plan-list-grid li {
+    padding: 0;
+}
+.plan-card-link {
+    display: block;
     background: rgba(255,255,255,0.08);
     border-radius: 8px;
     padding: 16px 12px;
@@ -49,6 +199,14 @@
     color: white;
     min-width: 0;
     word-break: break-word;
+    text-decoration: none;
+    transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.plan-card-link:hover {
+    transform: scale(1.07);
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.18);
+    z-index: 1;
+    color: #fff;
 }
 /* プラン一覧ページ全体を縦並び・中央寄せ */
 .plan-list-vertical {
@@ -64,6 +222,47 @@
     align-items: flex-start;
     gap: 8px;
     margin-bottom: 8px;
+}
+
+/* プラン一覧の検索ボタンもlogin/registerと同じUIに */
+.plan-search-form button[type="submit"] {
+    background: linear-gradient(90deg, #ffb3b3 0%, #ffd6d6 100%);
+    color: #a33;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.plan-search-form button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ffcccc 0%, #ffeaea 100%);
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
+    opacity: 0.95;
+}
+
+
+/* プルダウンメニュー（select）を赤系グラデーションに */
+.plan-search-form select {
+    background: linear-gradient(90deg, #fb747f 0%, #ffc371 100%);
+    border: none;
+    border-radius: 6px;
+    color: #222;
+    padding: 8px 12px;
+    font-size: 15px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    outline: none;
+    box-shadow: 0 2px 8px 0 rgba(255,95,109,0.08);
+    transition: box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.plan-search-form select:focus {
+    box-shadow: 0 4px 16px 0 rgba(255,95,109,0.18);
 }
 /* Homeタブだけ下げる */
 .tab-home {

@@ -1,21 +1,44 @@
 {% extends "base.html" %}
 {% block title %}プラン作成{% endblock %}
 {% block content %}
-<h1>新規プラン作成</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
-  {% for f in form %}
-    <div style="margin:10px 0;">
-      <label style="display:block; font-weight:600;">{{ f.label }}</label>
-      {{ f }}
-      {% for e in f.errors %}
-        <div style="color:#c00; font-size:0.9em;">{{ e }}</div>
-      {% endfor %}
+
+<div class="plan-form-vertical">
+  <h1>Create New Plan</h1>
+  <form method="post" class="plan-form-vertical-form login-form-vertical">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for f in form %}
+      <label class="login-label" style="width: 100%; margin-bottom: 12px;">
+        <span style="font-weight:600; margin-bottom: 2px;">{{ f.label }}</span>
+        {{ f }}
+        {% for e in f.errors %}
+          <div style="color:#c00; font-size:0.9em;">{{ e }}</div>
+        {% endfor %}
+      </label>
+    {% endfor %}
+
+
+    <div style="margin-top: 24px;">
+      <h3>Shops Visited (1 to 10 shops)</h3>
+      {{ formset.management_form }}
+      <div id="shop-formset-list">
+        {% for spot_form in formset %}
+          <div class="shop-formset-item" style="margin-bottom: 10px;">
+            {{ spot_form.name }}
+            {% for e in spot_form.name.errors %}
+              <div style="color:#c00; font-size:0.9em;">{{ e }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div style="margin-top:8px; color:#888; font-size:0.95em;">You must enter at least 1 shop (up to 5).</div>
     </div>
-  {% endfor %}
-  <button type="submit">保存</button>
-</form>
-<p style="margin-top:16px;"><a href="/">← ホームに戻る</a></p>
+
+  <!-- JS不要: Add/Delete機能なし・5個固定 -->
+
+    <button type="submit">Save</button>
+  </form>
+  <p style="margin-top:16px;"><a href="/">← Back to Home</a></p>
+</div>
 
 {% endblock %}
