@@ -19,8 +19,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from plans import views as pv
-from plans.views_delete import plan_delete
-from plans.views_bulk_delete import bulk_delete
+
 
 
 urlpatterns = [
@@ -42,8 +41,8 @@ urlpatterns = [
     path("plans/new/", pv.plan_new, name="plan_new"),  # 新規作成
 
     path("plans/<int:pk>/", pv.plan_detail, name="plan_detail"),  # 詳細表示
-    path("plans/<int:pk>/delete/", plan_delete, name="plan_delete"),  # 個別削除
-    path("plans/bulk_delete/", bulk_delete, name="bulk_delete"),  # 一括削除
+    # path("plans/<int:pk>/delete/", plan_delete, name="plan_delete"),  # 個別削除（未使用）
+    # path("plans/bulk_delete/", bulk_delete, name="bulk_delete"),  # 一括削除（未使用）
 
     # 一覧＆検索
     path("plans/", pv.plan_list, name="plan_list"),

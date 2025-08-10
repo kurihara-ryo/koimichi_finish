@@ -117,6 +117,7 @@ class Spot(models.Model):
     order = models.PositiveIntegerField(help_text="訪問順（1から）")
     name = models.CharField(max_length=100)
     stay_minutes = models.PositiveIntegerField(default=60, help_text="滞在時間(分)")
+    move_minutes = models.PositiveIntegerField(default=0, null=True, blank=True, help_text="移動時間(分)")
 
     class Meta:
         ordering = ["order"]

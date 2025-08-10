@@ -28,11 +28,19 @@ class SpotNameForm(forms.ModelForm):
         label="Shop Name",
         widget=forms.TextInput(attrs={"placeholder": "Shop name", "class": "form-control"})
     )
+    move_minutes = forms.IntegerField(
+        required=False,
+        label="移動時間（分）",
+        min_value=0,
+        max_value=180,
+        widget=forms.NumberInput(attrs={"class": "form-control", "placeholder": "0"})
+    )
     class Meta:
         model = Spot
-        fields = ["name", "stay_minutes"]
+        fields = ["name", "stay_minutes", "move_minutes"]
         labels = {
             "name": "Shop Name",
+            "move_minutes": "移動時間（分）",
         }
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": "Shop name", "class": "form-control"}),
