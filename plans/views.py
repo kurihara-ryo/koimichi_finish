@@ -3,10 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
 from .forms import PlanBasicForm, SpotFormSet
 from .models import Plan, Spot, PREF_CHOICES, SUBAREA_CHOICES
-
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Plan
 def home(request):
     # ログイン状態のテスト表示だけ
     return render(request, "home.html")
@@ -98,4 +100,14 @@ def logout_view(request):
     logout(request)
     messages.success(request, "You have been logged out.")
     return redirect('login')
+
+@login_required
+def plan_delete(request, pk):
+    plan = get_object_or_404(Plan, pk=pk, user=request.user)  # 作成者制約は適宜
+    if request.method == "POST":
+        title = getattr(plan, "title", "")
+        plan.delete()
+        messages.success(request, f"プラン「{title}」を削除しました。")
+        return redirect("plan_list")  # 一覧のURL名に合わせて
+    return render(request, "plans/plan_confirm_delete.html", {"plan": plan})
 

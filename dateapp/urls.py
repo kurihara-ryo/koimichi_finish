@@ -19,7 +19,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from plans import views as pv
-from plans.views_delete import plan_delete
+from plans.views import plan_delete
 from plans.views_bulk_delete import bulk_delete
 
 
