@@ -93,11 +93,9 @@
             <div class="shop-formset-row">
               <span class="form-label">滞在時間</span>
               {{ spot_form.stay_minutes }}
-              {% if not forloop.last %}
-                <span class="form-label" style="margin:0 0 0 16px;">↕ 移動時間</span>
-                <input type="number" name="move_minutes_{{ forloop.counter0 }}" min="0" max="180" step="1" value="0" />
-                <span class="white-min">分</span>
-              {% endif %}
+              <span class="form-label" style="margin:0 0 0 16px;">↕ 移動時間</span>
+              {{ spot_form.move_minutes }}
+              <span class="white-min">分</span>
             </div>
             {% for e in spot_form.name.errors %}
               <div style="color:#c00; font-size:0.9em;">{{ e }}</div>

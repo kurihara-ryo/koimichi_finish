@@ -33,7 +33,6 @@ def plan_new(request):
         if form.is_valid() and formset.is_valid():
             plan = form.save(commit=False)
             plan.author = request.user
-            plan.is_public = True  # 常に公開
             plan.save()
             spots = formset.save(commit=False)
             order = 1
@@ -61,7 +60,7 @@ def plan_list(request):
     sub_area = request.GET.get("sub_area", "")
 
     # デフォルトは全プラン表示
-    qs = Plan.objects.filter(is_public=True).order_by("-created_at")
+    qs = Plan.objects.all().order_by("-created_at")
     if pref:
         qs = qs.filter(pref=pref)
     if sub_area:
@@ -88,8 +87,8 @@ def plan_list(request):
         "PREF_CHOICES": PREF_CHOICES,
         "SUBAREA_CHOICES": SUBAREA_CHOICES,
         "display_mode": display_mode,
-        "show_display_buttons": True,  
-        "show_day_button": True,        # !!!!今までの予定のみ非表示ボタンTRUEで消す!!!!!
+        "show_display_buttons": False,  
+        "show_day_button": True,     # !!!!今までの予定のみ非表示ボタンTRUEで消す!!!!!
         "show_hide_button": True,     
     }
     return render(request, "plans/plan_list.html", context)
