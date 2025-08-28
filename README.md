@@ -1,4 +1,4 @@
-# Michishare
+# koimichi
 旅行プラン共有アプリ（Django）
 
 ## 開発起動
